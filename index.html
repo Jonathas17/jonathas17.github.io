@@ -1,269 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jonathas17 — Portfolio Modern</title>
-  <meta name="description" content="Portfólio moderno do Jonathas17 — projetos puxados do GitHub, com animações e dark mode." />
+  <title>Jonathas17 — Portfólio</title>
+  <meta name="description" content="Portfólio do Jonathas17 — header parallax com mockup, timeline e projetos puxados do GitHub" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b1020; --card:#0f1724; --muted:#9aa6bd; --accent:#7c3aed; --glass: rgba(255,255,255,0.03); --radius:14px;
-      --glass-2: rgba(255,255,255,0.02);
-      color-scheme: dark;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-    [data-theme='light']{ --bg:#f7f9fc; --card:#ffffff; --muted:#475569; --accent:#4f46e5; --glass: rgba(2,6,23,0.03); }
-
+    :root{--bg:#ffffff;--muted:#6b7280;--accent:#a0522d;--card:#fff;--glass:rgba(255,255,255,0.6);--radius:12px;font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{background:radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.06), transparent), var(--bg); color:#e6eef8; -webkit-font-smoothing:antialiased}
+    body,html{height:100%;margin:0}
+    /* Parallax header */
+    .hero{height:420px;background-image:url('hero.jpg');background-size:cover;background-position:center center;background-attachment:fixed;display:flex;align-items:center;justify-content:center;position:relative}
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,10,10,0.35), rgba(11,10,10,0.25))}
+    .hero-inner{position:relative;z-index:2;max-width:1100px;width:100%;padding:36px;color:#fff;display:flex;align-items:center;}
+    .hero-box{background:rgba(0,0,0,0.45);padding:18px;border-radius:8px;backdrop-filter:blur(4px)}
+    .hero h1{margin:0;font-size:2rem}
+    .hero p{margin:6px 0 0;color:rgba(255,255,255,0.85)}
 
-    .wrap{max-width:1100px;margin:36px auto;padding:28px}
-    header{display:flex;gap:20px;align-items:center}
-    .avatar{width:110px;height:110px;border-radius:18px;overflow:hidden;flex:0 0 110px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    /* welcome strip */
+    .strip{background:rgba(255,255,255,0.95);padding:28px 0;border-bottom:1px solid #eee}
+    .strip .wrap{display:flex;gap:20px;align-items:center}
+    .strip .center{flex:1;text-align:center;color:var(--muted)}
+    .intro-card{width:140px;background:#8b5e3c;color:#fff;padding:16px;border-radius:6px;margin:auto}
 
-    .meta{flex:1}
-    h1{margin:0;font-size:1.6rem;letter-spacing:0.2px}
-    p.bio{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
+    /* layout */
+    .wrap{max-width:1100px;margin:34px auto;padding:0 20px}
+    .layout{display:grid;grid-template-columns:2fr 1fr;gap:40px}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}}
 
-    .controls{display:flex;gap:8px;align-items:center}
-    .btn{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
-    .btn.primary{background:linear-gradient(90deg,var(--accent), #60a5fa);color:white;border:none}
+    /* timeline */
+    .timeline{display:flex;flex-direction:column;gap:20px}
+    .tl-item{display:flex;gap:18px;align-items:flex-start}
+    .tl-badge{width:92px;height:92px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .tl-content h4{margin:0 0 6px;font-size:1rem}
+    .tl-content p{margin:0;color:var(--muted);font-size:0.95rem}
 
-    nav.links{display:flex;gap:10px;margin-top:12px}
-    a.link{color:var(--accent);text-decoration:none;font-weight:600}
+    /* projects grid */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    @media(max-width:900px){.projects{grid-template-columns:1fr}}
+    .proj{background:#fff;border-radius:10px;padding:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(11,12,14,0.04)}
+    .proj h3{margin:0 0 8px}
+    .proj p{margin:0;color:var(--muted)}
+    .meta{display:flex;gap:12px;margin-top:12px;color:var(--muted);font-size:13px}
 
-    main{margin-top:28px}
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
 
-    .controls-row{display:flex;justify-content:space-between;align-items:center;gap:16px}
-    .search{max-width:520px;display:flex;gap:8px}
-    .search input{flex:1;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    .select{padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-    @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:640px){.grid{grid-template-columns:1fr}}
-
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);min-height:150px;display:flex;flex-direction:column;gap:12px;transform:translateY(8px);opacity:0;transition:all 450ms cubic-bezier(.2,.9,.3,1)}
-    .card.visible{transform:none;opacity:1}
-    .card:hover{transform:translateY(-6px) scale(1.01)}
-
-    .card h3{margin:0;font-size:1.05rem}
-    .card p{margin:0;color:var(--muted);font-size:0.95rem}
-    .meta-row{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
-    .lang{font-size:13px;color:var(--muted)}
-    .stats{font-size:13px;color:var(--muted)}
-
-    /* featured project */
-    .featured{display:grid;grid-template-columns:1fr 360px;gap:18px}
-    @media (max-width:980px){.featured{grid-template-columns:1fr}}
-    .hero-card{padding:20px;border-radius:16px;background:linear-gradient(180deg, rgba(124,58,237,0.08), rgba(6,10,26,0.2));border:1px solid rgba(124,58,237,0.12)}
-
-    .tags{display:flex;gap:8px;flex-wrap:wrap}
-    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted)}
-
-    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:14px}
-
-    /* subtle animated background blobs */
-    .blob{position:fixed;pointer-events:none;z-index:0;filter:blur(50px);opacity:0.08}
-    .blob.b1{right:-120px;top:-60px;width:420px;height:420px;background:linear-gradient(45deg,var(--accent), #06b6d4)}
-    .blob.b2{left:-160px;bottom:-60px;width:380px;height:380px;background:linear-gradient(45deg,#ef4444,var(--accent))}
-
-    /* tiny responsive helpers */
-    @media (max-width:480px){h1{font-size:1.25rem}}
+    /* small helpers */
+    .center-cta{display:flex;gap:12px;justify-content:center;margin-top:18px}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid #eee;background:#fff;cursor:pointer}
+    .btn.primary{background:var(--accent);color:#fff;border:none}
   </style>
 </head>
 <body>
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
 
-  <div class="wrap" id="app">
-    <header>
-      <div class="avatar"><img id="avatarImg" src="https://avatars.githubusercontent.com/Jonathas17" alt="avatar"></div>
-      <div class="meta">
-        <h1 id="name">Jonathas17</h1>
-        <p class="bio" id="bio">Desenvolvedor Full Stack • Front-end & Back-end • Dashboards</p>
-        <nav class="links">
-          <a class="link" id="githubLink" href="#" target="_blank">GitHub</a>
-          <a class="link" id="portfolioLink" href="#">Portfolio</a>
-        </nav>
+  <!-- HERO / PARALLAX -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-box">
+        <h1>Jonathas17</h1>
+        <p>Desenvolvedor Full Stack — Projetos web, Dashboards e Templates</p>
       </div>
-      <div class="controls">
-        <button class="btn" id="themeToggle">Toggle Theme</button>
-        <a class="btn primary" id="hireBtn" href="#contact">Hire Me</a>
-      </div>
-    </header>
+    </div>
+  </section>
 
-    <main>
-      <section class="featured" style="margin-top:20px">
-        <div class="hero-card">
-          <h2 id="heroTitle">Projetos em destaque</h2>
-          <p id="heroDesc" style="color:var(--muted);">Seleção dos meus últimos projetos e ideias: aplicações web, dashboards e templates prontos para uso.</p>
+  <!-- welcome strip with centered card -->
+  <section class="strip">
+    <div class="wrap" style="display:flex;align-items:center;gap:20px;">
+      <div style="flex:1"></div>
+      <div class="center">Bem-vindo ao meu portfólio. Aqui você encontra projetos recientes, ideias e contribuições open-source.</div>
+      <div style="flex:1;display:flex;justify-content:flex-end"><div class="intro-card">Jonathas<br>Developer</div></div>
+    </div>
+  </section>
 
-          <div style="margin-top:14px" class="tags" id="heroTags">
-            <span class="tag">Django</span>
-            <span class="tag">React</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">MySQL</span>
-          </div>
+  <main class="wrap">
+    <div class="layout">
 
-          <div style="margin-top:18px;display:flex;gap:10px">
-            <button class="btn" id="openAll">Open GitHub</button>
-            <button class="btn" id="downloadCv">Download CV</button>
-          </div>
+      <!-- projects area (puxa do GitHub) -->
+      <section>
+        <h2>Projetos</h2>
+        <div style="color:var(--muted);margin:8px 0 14px">Lista automática dos seus repositórios públicos do GitHub (filtrados e ordenados).</div>
+
+        <div id="projects" class="projects">
+          <!-- cards injetados via JS -->
         </div>
 
-        <div style="padding:0 6px">
-          <div id="featuredProject" class="card" style="min-height:200px;opacity:1;transform:none">
-            <h3 id="fpName">Carregando...</h3>
-            <p id="fpDesc" style="color:var(--muted)"></p>
-            <div class="meta-row">
-              <div class="lang" id="fpLang">—</div>
-              <div class="stats" id="fpStats">⭐ 0 • Forks: 0</div>
-            </div>
-          </div>
+        <div class="center-cta">
+          <button class="btn" id="viewAll">Ver no GitHub</button>
+          <a class="btn primary" id="visitRepo" href="#">Abrir perfil</a>
         </div>
       </section>
 
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:12px" class="controls-row">
-        <div class="search">
-          <input id="searchInput" placeholder="Filtrar projetos por nome, linguagem ou descrição...">
-          <select id="sortSelect" class="select">
-            <option value="updated">Recentes</option>
-            <option value="stars">Mais estrelas</option>
-            <option value="forks">Mais forks</option>
-          </select>
+      <!-- timeline / experiences -->
+      <aside>
+        <h3>Experiência & Educação</h3>
+        <div class="timeline" id="timeline">
+          <div class="tl-item">
+            <div class="tl-badge" style="background:#9ae6b4;color:#0b1220">PM</div>
+            <div class="tl-content"><h4>Project Manager</h4><p class="muted">New Company (2019 — Present). Descrição breve do papel e responsabilidades.</p></div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-badge" style="background:#f6ad55">UX</div>
+            <div class="tl-content"><h4>Senior UX Designer</h4><p class="muted">Studio One (2017 — 2018). Trabalho com design de interface e experiência do usuário.</p></div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-badge" style="background:#63b3ed">GD</div>
+            <div class="tl-content"><h4>Graphic Designer</h4><p class="muted">Digital Com (2015 — 2016). Atuação em peças gráficas e identidade visual.</p></div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-badge" style="background:#a0aec0;color:#fff">School</div>
+            <div class="tl-content"><h4>Design School</h4><p class="muted">Art Design College (2012 — 2014). Formação complementar e workshops.</p></div>
+          </div>
         </div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <button class="btn" id="refreshBtn">Refresh</button>
-          <img id="followersBadge" src="https://img.shields.io/github/followers/Jonathas17?label=Followers&style=flat" alt="followers">
-        </div>
-      </div>
+      </aside>
 
-      <section id="projects" class="grid" aria-live="polite" style="margin-top:16px">
-        <!-- project cards injected here -->
-      </section>
+    </div>
+  </main>
 
-      <footer>
-        Built with ❤️ • Data from GitHub • Deploy on GitHub Pages
-      </footer>
-    </main>
-  </div>
+  <footer>
+    Built with ❤️ • Dados do GitHub • Deploy via GitHub Pages
+  </footer>
 
+  <!-- SCRIPTS: Fetch repos from GitHub and render -->
   <script>
     const username = 'Jonathas17';
-    const apiBase = 'https://api.github.com';
+    const api = 'https://api.github.com';
 
-    // theme
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if(saved) root.setAttribute('data-theme', saved);
-
-    document.getElementById('themeToggle').addEventListener('click', ()=>{
-      const cur = root.getAttribute('data-theme');
-      const next = cur === 'light' ? '' : 'light';
-      if(next) root.setAttribute('data-theme', next); else root.removeAttribute('data-theme');
-      localStorage.setItem('theme', next);
-    });
-
-    // fetch profile and repos
-    async function getProfile(){
+    async function fetchRepos(){
       try{
-        const res = await fetch(`${apiBase}/users/${username}`);
-        if(!res.ok) throw res;
-        const data = await res.json();
-        document.getElementById('name').textContent = data.name || data.login;
-        document.getElementById('bio').textContent = data.bio || 'Full Stack Developer';
-        document.getElementById('avatarImg').src = data.avatar_url;
-        document.getElementById('githubLink').href = data.html_url;
-        document.getElementById('openAll').addEventListener('click', ()=> window.open(data.html_url, '_blank'));
-      }catch(e){console.warn('profile error', e)}
-    }
-
-    async function getRepos(){
-      const container = document.getElementById('projects');
-      container.innerHTML = '';
-      // show placeholders
-      for(let i=0;i<6;i++){ const ph=document.createElement('div'); ph.className='card'; ph.innerHTML='<h3>Loading...</h3><p style="color:var(--muted)">Fetching repository data</p>'; container.appendChild(ph); }
-
-      try{
-        const res = await fetch(`${apiBase}/users/${username}/repos?per_page=100&sort=updated`);
-        if(!res.ok) throw new Error('Rate limit or error');
+        const res = await fetch(`${api}/users/${username}/repos?per_page=100&sort=updated`);
+        if(!res.ok) throw new Error('Falha ao buscar repositórios: ' + res.status);
         let repos = await res.json();
-        repos = repos.filter(r => !r.fork);
-        render(repos);
-        setFeatured(repos[0]);
-      }catch(err){
-        container.innerHTML = `<div style="grid-column:1/-1;padding:18px;border-radius:12px;background:var(--card);color:var(--muted)">Não foi possível carregar repositórios. Tente novamente mais tarde ou use um token.</div>`;
-        console.error(err);
+        repos = repos.filter(r => !r.fork).slice(0,8);
+        renderRepos(repos);
+        document.getElementById('visitRepo').href = `https://github.com/${username}`;
+        document.getElementById('viewAll').addEventListener('click', ()=> window.open(`https://github.com/${username}`, '_blank'));
+      }catch(e){
+        console.error(e);
+        document.getElementById('projects').innerHTML = '<div style="grid-column:1/-1;padding:18px;border-radius:10px;background:#fff;color:#555">Não foi possível carregar seus repositórios. Pode ser limite da API. Você pode adicionar um token pessoal no código para aumentar o limite.</div>';
       }
     }
 
-    function render(repos){
+    function renderRepos(repos){
       const container = document.getElementById('projects');
       container.innerHTML = '';
-      const q = document.getElementById('searchInput').value.toLowerCase();
-      let list = [...repos];
-      const sort = document.getElementById('sortSelect').value;
-      if(sort === 'stars') list.sort((a,b)=> b.stargazers_count - a.stargazers_count);
-      else if(sort === 'forks') list.sort((a,b)=> b.forks_count - a.forks_count);
-      else list.sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at));
+      if(!repos || repos.length === 0){ container.innerHTML = '<div style="grid-column:1/-1;padding:18px;border-radius:10px;background:#fff;color:#555">Nenhum repositório encontrado.</div>'; return }
 
-      list.forEach(repo => {
-        if(q && !(repo.name+repo.language+(repo.description||'')).toLowerCase().includes(q)) return;
-        const card = document.createElement('article'); card.className='card';
-        card.innerHTML = `<h3><a class="link" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a></h3>
-                          <p>${repo.description || ''}</p>
-                          <div class="meta-row"><div class="lang">${repo.language || '—'}</div><div class="stats">⭐ ${repo.stargazers_count} • Forks: ${repo.forks_count}</div></div>`;
-        container.appendChild(card);
+      repos.forEach(r => {
+        const el = document.createElement('article'); el.className='proj';
+        el.innerHTML = `
+          <h3><a href="${r.html_url}" target="_blank" style="color:inherit;text-decoration:none">${r.name}</a></h3>
+          <p>${r.description || ''}</p>
+          <div class="meta"> <div>⭐ ${r.stargazers_count}</div><div>Forks: ${r.forks_count}</div><div>${r.language || '—'}</div></div>`;
+        container.appendChild(el);
       });
-
-      // animate into view
-      const cards = document.querySelectorAll('.card');
-      cards.forEach((c,i)=> setTimeout(()=> c.classList.add('visible'), 80*i));
-    }
-
-    function setFeatured(repo){
-      if(!repo) return;
-      document.getElementById('fpName').textContent = repo.name;
-      document.getElementById('fpDesc').textContent = repo.description || '';
-      document.getElementById('fpLang').textContent = repo.language || '—';
-      document.getElementById('fpStats').textContent = `⭐ ${repo.stargazers_count} • Forks: ${repo.forks_count}`;
-      document.getElementById('featuredProject').onclick = ()=> window.open(repo.html_url, '_blank');
-    }
-
-    // interactions
-    document.getElementById('refreshBtn').addEventListener('click', ()=> getRepos());
-    document.getElementById('searchInput').addEventListener('input', ()=> filterAndRender());
-    document.getElementById('sortSelect').addEventListener('change', ()=> filterAndRender());
-
-    async function filterAndRender(){
-      try{
-        const res = await fetch(`${apiBase}/users/${username}/repos?per_page=100&sort=updated`);
-        const repos = await res.json();
-        render(repos.filter(r => !r.fork));
-      }catch(e){console.error(e)}
     }
 
     // initial
-    (async ()=>{ await getProfile(); await getRepos(); })();
-
-    // graceful fallback for users that hit API limit: allow adding token via prompt
-    // (optional) press 'd' to enter token for higher rate limit
-    window.addEventListener('keydown', async (e)=>{
-      if(e.key.toLowerCase() === 'd' && confirm('Add GitHub token to increase rate limit?')){
-        const t = prompt('Paste a personal access token (scopes: public_repo) — it will be stored locally only');
-        if(t){
-          localStorage.setItem('gh_token', t);
-          alert('Token saved locally. Refreshing...');
-          location.reload();
-        }
-      }
-    });
+    fetchRepos();
   </script>
 </body>
 </html>
