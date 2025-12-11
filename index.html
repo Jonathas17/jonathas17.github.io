@@ -1,264 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jonathas17 — Portfolio</title>
-  <meta name="description" content="Portfolio of Jonathas17 — Full Stack Developer. Projects pulled from GitHub." />
+  <title>Jonathas17 — Portfolio Modern</title>
+  <meta name="description" content="Portfólio moderno do Jonathas17 — projetos puxados do GitHub, com animações e dark mode." />
 
-  <!-- Simple reset + Google Font -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- GitHub stats badges (replace SEU_USUARIO if needed) -->
   <style>
     :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#9aa6bd;
-      --accent:#60a5fa;
-      --glass: rgba(255,255,255,0.03);
-      --radius:14px;
+      --bg:#0b1020; --card:#0f1724; --muted:#9aa6bd; --accent:#7c3aed; --glass: rgba(255,255,255,0.03); --radius:14px;
+      --glass-2: rgba(255,255,255,0.02);
       color-scheme: dark;
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
+    [data-theme='light']{ --bg:#f7f9fc; --card:#ffffff; --muted:#475569; --accent:#4f46e5; --glass: rgba(2,6,23,0.03); }
+
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,var(--bg),#071022);color:#e6eef8;min-height:100vh}
-    .container{max-width:1100px;margin:36px auto;padding:28px}
+    html,body{height:100%;margin:0}
+    body{background:radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.06), transparent), var(--bg); color:#e6eef8; -webkit-font-smoothing:antialiased}
+
+    .wrap{max-width:1100px;margin:36px auto;padding:28px}
     header{display:flex;gap:20px;align-items:center}
-    .avatar{width:120px;height:120px;border-radius:12px;overflow:hidden;flex:0 0 120px;border:2px solid rgba(255,255,255,0.06)}
+    .avatar{width:110px;height:110px;border-radius:18px;overflow:hidden;flex:0 0 110px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
     .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-    .hero{flex:1}
-    h1{margin:0;font-size:1.6rem}
-    p.lead{margin:6px 0 0;color:var(--muted)}
 
-    .badges{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-    .badge{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+    .meta{flex:1}
+    h1{margin:0;font-size:1.6rem;letter-spacing:0.2px}
+    p.bio{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
 
-    .controls{display:flex;gap:8px;align-items:center;margin-left:auto}
-    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+    .controls{display:flex;gap:8px;align-items:center}
+    .btn{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--muted);cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent), #60a5fa);color:white;border:none}
 
-    main{margin-top:30px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    nav.links{display:flex;gap:10px;margin-top:12px}
+    a.link{color:var(--accent);text-decoration:none;font-weight:600}
+
+    main{margin-top:28px}
+
+    .controls-row{display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .search{max-width:520px;display:flex;gap:8px}
+    .search input{flex:1;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .select{padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
     @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:640px){.grid{grid-template-columns:1fr}}
 
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-height:120px;display:flex;flex-direction:column;gap:10px}
-    .card h3{margin:0;font-size:1rem}
-    .card p{margin:0;color:var(--muted);font-size:14px}
-    .meta{display:flex;gap:10px;align-items:center;margin-top:auto}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.03);min-height:150px;display:flex;flex-direction:column;gap:12px;transform:translateY(8px);opacity:0;transition:all 450ms cubic-bezier(.2,.9,.3,1)}
+    .card.visible{transform:none;opacity:1}
+    .card:hover{transform:translateY(-6px) scale(1.01)}
+
+    .card h3{margin:0;font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:0.95rem}
+    .meta-row{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
     .lang{font-size:13px;color:var(--muted)}
-    .stat{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
-    a.link{color:var(--accent);text-decoration:none}
+    .stats{font-size:13px;color:var(--muted)}
 
-    footer{margin-top:30px;color:var(--muted);font-size:14px;text-align:center}
+    /* featured project */
+    .featured{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    @media (max-width:980px){.featured{grid-template-columns:1fr}}
+    .hero-card{padding:20px;border-radius:16px;background:linear-gradient(180deg, rgba(124,58,237,0.08), rgba(6,10,26,0.2));border:1px solid rgba(124,58,237,0.12)}
 
-    /* loader */
-    .loader{display:flex;gap:8px;align-items:center}
-    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);opacity:0.3;animation:blink 1s infinite}
-    .dot:nth-child(2){animation-delay:0.15s}
-    .dot:nth-child(3){animation-delay:0.3s}
-    @keyframes blink{0%{opacity:0.2}50%{opacity:1}100%{opacity:0.2}}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted)}
 
-    /* search */
-    .search{display:flex;gap:8px;align-items:center;margin:18px 0}
-    .search input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:14px}
 
-    /* empty */
-    .empty{padding:24px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px dashed rgba(255,255,255,0.03);color:var(--muted)}
+    /* subtle animated background blobs */
+    .blob{position:fixed;pointer-events:none;z-index:0;filter:blur(50px);opacity:0.08}
+    .blob.b1{right:-120px;top:-60px;width:420px;height:420px;background:linear-gradient(45deg,var(--accent), #06b6d4)}
+    .blob.b2{left:-160px;bottom:-60px;width:380px;height:380px;background:linear-gradient(45deg,#ef4444,var(--accent))}
+
+    /* tiny responsive helpers */
+    @media (max-width:480px){h1{font-size:1.25rem}}
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
+  <div class="wrap" id="app">
     <header>
-      <div class="avatar" id="avatar">
-        <!-- avatar image inserted by JS -->
-        <img src="https://avatars.githubusercontent.com/Jonathas17" alt="avatar" />
-      </div>
-      <div class="hero">
+      <div class="avatar"><img id="avatarImg" src="https://avatars.githubusercontent.com/Jonathas17" alt="avatar"></div>
+      <div class="meta">
         <h1 id="name">Jonathas17</h1>
-        <p class="lead" id="bio">Full Stack Developer — Front-end, Back-end, Dashboards</p>
-        <div class="badges">
-          <img src="https://img.shields.io/github/followers/Jonathas17?label=Followers&style=flat" alt="followers" class="badge">
-          <img src="https://img.shields.io/github/stars/Jonathas17?style=flat" alt="stars" class="badge">
-          <img src="https://komarev.com/ghpvc/?username=Jonathas17&color=blue" alt="views" class="badge">
-        </div>
+        <p class="bio" id="bio">Desenvolvedor Full Stack • Front-end & Back-end • Dashboards</p>
+        <nav class="links">
+          <a class="link" id="githubLink" href="#" target="_blank">GitHub</a>
+          <a class="link" id="portfolioLink" href="#">Portfolio</a>
+        </nav>
       </div>
       <div class="controls">
-        <button class="btn" id="refresh">Refresh</button>
-        <button class="btn" id="toggleTheme">Toggle Theme</button>
+        <button class="btn" id="themeToggle">Toggle Theme</button>
+        <a class="btn primary" id="hireBtn" href="#contact">Hire Me</a>
       </div>
     </header>
 
     <main>
-      <section class="search">
-        <input type="text" id="filter" placeholder="Filter projects by name, language or description...">
-        <select id="sort">
-          <option value="updated">Sort: Recently updated</option>
-          <option value="stars">Sort: Most stars</option>
-          <option value="forks">Sort: Most forks</option>
-        </select>
-      </section>
+      <section class="featured" style="margin-top:20px">
+        <div class="hero-card">
+          <h2 id="heroTitle">Projetos em destaque</h2>
+          <p id="heroDesc" style="color:var(--muted);">Seleção dos meus últimos projetos e ideias: aplicações web, dashboards e templates prontos para uso.</p>
 
-      <section id="projectsContainer">
-        <div class="loader" id="loader">
-          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          <span style="color:var(--muted);margin-left:8px">Loading projects from GitHub...</span>
+          <div style="margin-top:14px" class="tags" id="heroTags">
+            <span class="tag">Django</span>
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MySQL</span>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px">
+            <button class="btn" id="openAll">Open GitHub</button>
+            <button class="btn" id="downloadCv">Download CV</button>
+          </div>
+        </div>
+
+        <div style="padding:0 6px">
+          <div id="featuredProject" class="card" style="min-height:200px;opacity:1;transform:none">
+            <h3 id="fpName">Carregando...</h3>
+            <p id="fpDesc" style="color:var(--muted)"></p>
+            <div class="meta-row">
+              <div class="lang" id="fpLang">—</div>
+              <div class="stats" id="fpStats">⭐ 0 • Forks: 0</div>
+            </div>
+          </div>
         </div>
       </section>
 
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:12px" class="controls-row">
+        <div class="search">
+          <input id="searchInput" placeholder="Filtrar projetos por nome, linguagem ou descrição...">
+          <select id="sortSelect" class="select">
+            <option value="updated">Recentes</option>
+            <option value="stars">Mais estrelas</option>
+            <option value="forks">Mais forks</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn" id="refreshBtn">Refresh</button>
+          <img id="followersBadge" src="https://img.shields.io/github/followers/Jonathas17?label=Followers&style=flat" alt="followers">
+        </div>
+      </div>
+
+      <section id="projects" class="grid" aria-live="polite" style="margin-top:16px">
+        <!-- project cards injected here -->
+      </section>
+
       <footer>
-        Built with ❤️ • Data fetched from GitHub API • Deploy with GitHub Pages
+        Built with ❤️ • Data from GitHub • Deploy on GitHub Pages
       </footer>
     </main>
   </div>
 
   <script>
-    const username = 'Jonathas17'; // your GitHub username
-    const projectsContainer = document.getElementById('projectsContainer');
-    const loader = document.getElementById('loader');
-    const nameEl = document.getElementById('name');
-    const bioEl = document.getElementById('bio');
-    const avatarImg = document.querySelector('#avatar img');
-    const filterInput = document.getElementById('filter');
-    const sortSelect = document.getElementById('sort');
-    const refreshBtn = document.getElementById('refresh');
+    const username = 'Jonathas17';
+    const apiBase = 'https://api.github.com';
 
-    async function fetchProfile(){
+    // theme
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved) root.setAttribute('data-theme', saved);
+
+    document.getElementById('themeToggle').addEventListener('click', ()=>{
+      const cur = root.getAttribute('data-theme');
+      const next = cur === 'light' ? '' : 'light';
+      if(next) root.setAttribute('data-theme', next); else root.removeAttribute('data-theme');
+      localStorage.setItem('theme', next);
+    });
+
+    // fetch profile and repos
+    async function getProfile(){
       try{
-        const res = await fetch(`https://api.github.com/users/${username}`);
-        if(!res.ok) throw new Error('Failed to fetch profile');
+        const res = await fetch(`${apiBase}/users/${username}`);
+        if(!res.ok) throw res;
         const data = await res.json();
-        nameEl.textContent = data.name || data.login;
-        bioEl.textContent = data.bio || 'Full Stack Developer — Front-end, Back-end, Dashboards';
-        avatarImg.src = data.avatar_url;
-      }catch(err){
-        console.error(err);
-      }
+        document.getElementById('name').textContent = data.name || data.login;
+        document.getElementById('bio').textContent = data.bio || 'Full Stack Developer';
+        document.getElementById('avatarImg').src = data.avatar_url;
+        document.getElementById('githubLink').href = data.html_url;
+        document.getElementById('openAll').addEventListener('click', ()=> window.open(data.html_url, '_blank'));
+      }catch(e){console.warn('profile error', e)}
     }
 
-    async function fetchRepos(){
-      loader.style.display = 'flex';
-      // clear previous content
-      const list = document.querySelector('.grid');
-      if(list) list.remove();
+    async function getRepos(){
+      const container = document.getElementById('projects');
+      container.innerHTML = '';
+      // show placeholders
+      for(let i=0;i<6;i++){ const ph=document.createElement('div'); ph.className='card'; ph.innerHTML='<h3>Loading...</h3><p style="color:var(--muted)">Fetching repository data</p>'; container.appendChild(ph); }
 
       try{
-        const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
-        if(!res.ok) throw new Error('Failed to fetch repos: ' + res.status);
+        const res = await fetch(`${apiBase}/users/${username}/repos?per_page=100&sort=updated`);
+        if(!res.ok) throw new Error('Rate limit or error');
         let repos = await res.json();
-
-        // filter out forks optionally
         repos = repos.filter(r => !r.fork);
-
-        renderProjects(repos);
+        render(repos);
+        setFeatured(repos[0]);
       }catch(err){
+        container.innerHTML = `<div style="grid-column:1/-1;padding:18px;border-radius:12px;background:var(--card);color:var(--muted)">Não foi possível carregar repositórios. Tente novamente mais tarde ou use um token.</div>`;
         console.error(err);
-        projectsContainer.innerHTML = `<div class="empty">Could not load repositories. You may have hit the GitHub API rate limit. Try again or add a <code>GITHUB_TOKEN</code> in the code for higher rate limits.</div>`;
-      }finally{
-        loader.style.display = 'none';
       }
     }
 
-    function renderProjects(repos){
-      if(!repos || repos.length === 0){
-        projectsContainer.innerHTML = `<div class="empty">No repositories found.</div>`;
-        return;
-      }
+    function render(repos){
+      const container = document.getElementById('projects');
+      container.innerHTML = '';
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      let list = [...repos];
+      const sort = document.getElementById('sortSelect').value;
+      if(sort === 'stars') list.sort((a,b)=> b.stargazers_count - a.stargazers_count);
+      else if(sort === 'forks') list.sort((a,b)=> b.forks_count - a.forks_count);
+      else list.sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at));
 
-      const grid = document.createElement('div');
-      grid.className = 'grid';
-
-      // apply initial sort
-      repos = sortRepos(repos, sortSelect.value);
-
-      repos.forEach(repo => {
-        const card = document.createElement('article');
-        card.className = 'card';
-
-        const title = document.createElement('h3');
-        const a = document.createElement('a');
-        a.href = repo.html_url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.textContent = repo.name;
-        a.className = 'link';
-        title.appendChild(a);
-
-        const desc = document.createElement('p');
-        desc.textContent = repo.description || '';
-
-        const meta = document.createElement('div');
-        meta.className = 'meta';
-
-        const lang = document.createElement('div');
-        lang.className = 'lang';
-        lang.textContent = repo.language || '—';
-
-        const stats = document.createElement('div');
-        stats.className = 'stat';
-        stats.innerHTML = `⭐ ${repo.stargazers_count} &nbsp; • &nbsp; Forks: ${repo.forks_count}`;
-
-        meta.appendChild(lang);
-        meta.appendChild(stats);
-
-        card.appendChild(title);
-        card.appendChild(desc);
-        card.appendChild(meta);
-
-        grid.appendChild(card);
+      list.forEach(repo => {
+        if(q && !(repo.name+repo.language+(repo.description||'')).toLowerCase().includes(q)) return;
+        const card = document.createElement('article'); card.className='card';
+        card.innerHTML = `<h3><a class="link" href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a></h3>
+                          <p>${repo.description || ''}</p>
+                          <div class="meta-row"><div class="lang">${repo.language || '—'}</div><div class="stats">⭐ ${repo.stargazers_count} • Forks: ${repo.forks_count}</div></div>`;
+        container.appendChild(card);
       });
 
-      projectsContainer.appendChild(grid);
-    }
-
-    function sortRepos(repos, mode){
-      const copy = [...repos];
-      if(mode === 'stars') copy.sort((a,b)=> b.stargazers_count - a.stargazers_count);
-      else if(mode === 'forks') copy.sort((a,b)=> b.forks_count - a.forks_count);
-      else copy.sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at));
-      return copy;
-    }
-
-    // filter event
-    filterInput.addEventListener('input', ()=>{
-      const q = filterInput.value.toLowerCase().trim();
+      // animate into view
       const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(q) ? 'flex' : 'none';
-      });
-    });
+      cards.forEach((c,i)=> setTimeout(()=> c.classList.add('visible'), 80*i));
+    }
 
-    sortSelect.addEventListener('change', async ()=>{
-      // refetch and re-render with new sort
-      const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
-      const repos = await res.json();
-      const filtered = repos.filter(r => !r.fork);
-      const grid = document.querySelector('.grid'); if(grid) grid.remove();
-      renderProjects(sortRepos(filtered, sortSelect.value));
-    });
+    function setFeatured(repo){
+      if(!repo) return;
+      document.getElementById('fpName').textContent = repo.name;
+      document.getElementById('fpDesc').textContent = repo.description || '';
+      document.getElementById('fpLang').textContent = repo.language || '—';
+      document.getElementById('fpStats').textContent = `⭐ ${repo.stargazers_count} • Forks: ${repo.forks_count}`;
+      document.getElementById('featuredProject').onclick = ()=> window.open(repo.html_url, '_blank');
+    }
 
-    refreshBtn.addEventListener('click', ()=>{ fetchRepos(); });
+    // interactions
+    document.getElementById('refreshBtn').addEventListener('click', ()=> getRepos());
+    document.getElementById('searchInput').addEventListener('input', ()=> filterAndRender());
+    document.getElementById('sortSelect').addEventListener('change', ()=> filterAndRender());
 
-    document.getElementById('toggleTheme').addEventListener('click', ()=>{
-      if(document.documentElement.hasAttribute('data-light')){
-        document.documentElement.removeAttribute('data-light');
-        document.documentElement.style.setProperty('--bg','#0f1724');
-      } else {
-        document.documentElement.setAttribute('data-light','');
-        document.documentElement.style.setProperty('--bg','#f7f9fc');
-        document.documentElement.style.setProperty('--card','#ffffff');
-        document.documentElement.style.setProperty('--muted','#4b5563');
-        document.documentElement.style.setProperty('--accent','#2563eb');
+    async function filterAndRender(){
+      try{
+        const res = await fetch(`${apiBase}/users/${username}/repos?per_page=100&sort=updated`);
+        const repos = await res.json();
+        render(repos.filter(r => !r.fork));
+      }catch(e){console.error(e)}
+    }
+
+    // initial
+    (async ()=>{ await getProfile(); await getRepos(); })();
+
+    // graceful fallback for users that hit API limit: allow adding token via prompt
+    // (optional) press 'd' to enter token for higher rate limit
+    window.addEventListener('keydown', async (e)=>{
+      if(e.key.toLowerCase() === 'd' && confirm('Add GitHub token to increase rate limit?')){
+        const t = prompt('Paste a personal access token (scopes: public_repo) — it will be stored locally only');
+        if(t){
+          localStorage.setItem('gh_token', t);
+          alert('Token saved locally. Refreshing...');
+          location.reload();
+        }
       }
     });
-
-    // initial load
-    (async ()=>{
-      await fetchProfile();
-      await fetchRepos();
-    })();
   </script>
 </body>
 </html>
