@@ -3,54 +3,85 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jonathas17 — Portfólio</title>
-  <meta name="description" content="Portfólio do Jonathas17 — header parallax com mockup, timeline e projetos puxados do GitHub" />
+  <title>Jonathas17 — Portfólio Premium</title>
+  <meta name="description" content="Portfólio premium em tema preto do Jonathas17 — header parallax com mockup, timeline e projetos puxados do GitHub" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#ffffff;--muted:#6b7280;--accent:#a0522d;--card:#fff;--glass:rgba(255,255,255,0.6);--radius:12px;font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    :root{
+      --bg:#050507;            /* black */
+      --panel:#0b0b0d;         /* card dark */
+      --muted:#9aa0a6;         /* muted text */
+      --accent:#ffd166;        /* warm gold accent */
+      --accent-2:#7dd3fc;      /* cool accent */
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: dark;
+    }
+
     *{box-sizing:border-box}
-    body,html{height:100%;margin:0}
-    /* Parallax header */
-    .hero{height:420px;background-image:url('hero.jpg');background-size:cover;background-position:center center;background-attachment:fixed;display:flex;align-items:center;justify-content:center;position:relative}
-    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,10,10,0.35), rgba(11,10,10,0.25))}
-    .hero-inner{position:relative;z-index:2;max-width:1100px;width:100%;padding:36px;color:#fff;display:flex;align-items:center;}
-    .hero-box{background:rgba(0,0,0,0.45);padding:18px;border-radius:8px;backdrop-filter:blur(4px)}
-    .hero h1{margin:0;font-size:2rem}
-    .hero p{margin:6px 0 0;color:rgba(255,255,255,0.85)}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#070708);color:#e6eef8}
 
-    /* welcome strip */
-    .strip{background:rgba(255,255,255,0.95);padding:28px 0;border-bottom:1px solid #eee}
-    .strip .wrap{display:flex;gap:20px;align-items:center}
-    .strip .center{flex:1;text-align:center;color:var(--muted)}
-    .intro-card{width:140px;background:#8b5e3c;color:#fff;padding:16px;border-radius:6px;margin:auto}
+    a{color:var(--accent-2);text-decoration:none}
 
-    /* layout */
-    .wrap{max-width:1100px;margin:34px auto;padding:0 20px}
+    /* HERO - parallax */
+    .hero{height:520px;background-image:url('hero.jpg');background-size:cover;background-position:center center;background-attachment:fixed;position:relative;display:flex;align-items:center}
+    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(5,5,6,0.55), rgba(3,3,4,0.65));mix-blend-mode:multiply}
+    .hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:48px;display:flex;gap:36px;align-items:center}
+
+    .hero-left{flex:1}
+    .title{font-size:2.4rem;margin:0;letter-spacing:0.4px;font-weight:800}
+    .subtitle{margin:8px 0 0;color:var(--muted);font-size:1.02rem;max-width:650px;line-height:1.5}
+
+    .hero-right{width:320px;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
+    .stat{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .stat strong{font-size:1.1rem;color:var(--accent)}
+    .stat span{color:var(--muted)}
+
+    /* NAV STRIP */
+    .strip{background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+    .strip-inner{display:flex;align-items:center;gap:20px}
+    .intro-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--accent);font-weight:700}
+    .strip-text{flex:1;color:var(--muted);text-align:center}
+
+    /* main layout */
+    main{max-width:1200px;margin:34px auto;padding:0 20px}
     .layout{display:grid;grid-template-columns:2fr 1fr;gap:40px}
-    @media(max-width:900px){.layout{grid-template-columns:1fr}}
+    @media(max-width:980px){.layout{grid-template-columns:1fr}}
 
-    /* timeline */
-    .timeline{display:flex;flex-direction:column;gap:20px}
-    .tl-item{display:flex;gap:18px;align-items:flex-start}
-    .tl-badge{width:92px;height:92px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
-    .tl-content h4{margin:0 0 6px;font-size:1rem}
-    .tl-content p{margin:0;color:var(--muted);font-size:0.95rem}
-
-    /* projects grid */
+    /* projects */
     .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    @media(max-width:900px){.projects{grid-template-columns:1fr}}
-    .proj{background:#fff;border-radius:10px;padding:14px;border:1px solid #eee;box-shadow:0 6px 18px rgba(11,12,14,0.04)}
-    .proj h3{margin:0 0 8px}
-    .proj p{margin:0;color:var(--muted)}
+    @media(max-width:980px){.projects{grid-template-columns:1fr}}
+    .proj{background:var(--panel);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.02);box-shadow:0 10px 30px rgba(2,6,23,0.6);transition:transform .32s cubic-bezier(.2,.9,.3,1), box-shadow .32s}
+    .proj:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(2,6,23,0.8)}
+    .proj h3{margin:0 0 8px;font-weight:700}
+    .proj p{margin:0;color:var(--muted);line-height:1.5}
     .meta{display:flex;gap:12px;margin-top:12px;color:var(--muted);font-size:13px}
 
-    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+    /* timeline */
+    .timeline{display:flex;flex-direction:column;gap:18px}
+    .tl-item{display:flex;gap:14px;align-items:flex-start;background:transparent}
+    .tl-badge{min-width:72px;height:72px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#0b0b0d;font-weight:800;background:linear-gradient(135deg,var(--accent),#ffb86b)}
+    .tl-content h4{margin:0 0 6px;color:#fff}
+    .tl-content p{margin:0;color:var(--muted);font-size:0.95rem}
 
-    /* small helpers */
-    .center-cta{display:flex;gap:12px;justify-content:center;margin-top:18px}
-    .btn{padding:10px 14px;border-radius:10px;border:1px solid #eee;background:#fff;cursor:pointer}
-    .btn.primary{background:var(--accent);color:#fff;border:none}
+    /* CTA and footer */
+    .cta{display:flex;gap:12px;justify-content:center;margin-top:26px}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ffb86b);color:#0b0b0d;border:none}
+
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px}
+
+    /* subtle animations */
+    .fade-in{opacity:0;transform:translateY(12px);animation:enter .6s forwards}
+    .fade-in.del-1{animation-delay:.08s}
+    .fade-in.del-2{animation-delay:.16s}
+    @keyframes enter{to{opacity:1;transform:none}}
+
+    /* responsive tweaks */
+    @media(max-width:520px){.title{font-size:1.6rem}.hero-right{display:none}.hero{height:420px}}
   </style>
 </head>
 <body>
@@ -58,44 +89,79 @@
   <!-- HERO / PARALLAX -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-box">
-        <h1>Jonathas17</h1>
-        <p>Desenvolvedor Full Stack — Projetos web, Dashboards e Templates</p>
+      <div class="hero-left">
+        <h1 class="title">Jonathas17 — Full Stack Developer</h1>
+        <p class="subtitle">Crio aplicações web profissionais, dashboards interativos e templates prontos para produção. Meu foco é desempenho, arquitetura limpa e experiência do usuário.</p>
       </div>
+
+      <aside class="hero-right fade-in del-1">
+        <div class="stat"><strong>30+</strong><span>Projetos</span></div>
+        <div class="stat"><strong>10k</strong><span>Linhas de código</span></div>
+        <div class="stat"><strong>Open</strong><span>Open-source contribs</span></div>
+      </aside>
     </div>
   </section>
 
   <!-- welcome strip with centered card -->
   <section class="strip">
-    <div class="wrap" style="display:flex;align-items:center;gap:20px;">
-      <div style="flex:1"></div>
-      <div class="center">Bem-vindo ao meu portfólio. Aqui você encontra projetos recientes, ideias e contribuições open-source.</div>
-      <div style="flex:1;display:flex;justify-content:flex-end"><div class="intro-card">Jonathas<br>Developer</div></div>
+    <div class="wrap">
+      <div class="strip-inner">
+        <div class="intro-card">Jonathas</div>
+        <div class="strip-text">Bem-vindo ao meu portfólio premium. Explore projetos, estudos de caso — tudo com um visual escuro e sofisticado.</div>
+        <div style="width:140px;text-align:right"><button class="btn primary" onclick="window.open('https://github.com/Jonathas17','_blank')">Ver GitHub</button></div>
+      </div>
     </div>
   </section>
 
-  <main class="wrap">
-    <div class="layout">
+  <main>
+    <div class="layout wrap">
 
       <!-- projects area (puxa do GitHub) -->
-      <section>
-        <h2>Projetos</h2>
+      <section class="fade-in del-2">
+        <h2 style="margin-top:0;color:#fff">Projetos</h2>
         <div style="color:var(--muted);margin:8px 0 14px">Lista automática dos seus repositórios públicos do GitHub (filtrados e ordenados).</div>
 
         <div id="projects" class="projects">
           <!-- cards injetados via JS -->
         </div>
 
-        <div class="center-cta">
+        <div class="cta">
           <button class="btn" id="viewAll">Ver no GitHub</button>
           <a class="btn primary" id="visitRepo" href="#">Abrir perfil</a>
         </div>
       </section>
+
+      <!-- timeline / experiences -->
+      <aside class="fade-in del-1">
+        <h3 style="color:#fff;margin-top:0">Experiência & Educação</h3>
+        <div class="timeline" id="timeline">
+          <div class="tl-item">
+            <div class="tl-badge">PJ</div>
+            <div class="tl-content"><h4>Projetos</h4><p>Python - Javascript</p></div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-badge" style="background:linear-gradient(135deg,#ff7a7a,#ffd166)">UX</div>
+            <div class="tl-content"><h4>UX Designer</h4><p>Design de interfaces e prototipagem.</p></div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-badge" style="background:linear-gradient(135deg,#7dd3fc,#60a5fa)">GD</div>
+            <div class="tl-content"><h4>Graphic Designer</h4><p>Criação de identidades visuais e materiais de comunicação.</p></div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-badge" style="background:#94a3b8;color:#0b0b0d">FL</div>
+            <div class="tl-content"><h4>FullStack</h4><p>Cursos e Capacitação em Back-End e Front-End</p></div>
+          </div>
+        </div>
+      </aside>
+
     </div>
   </main>
 
   <footer>
-    Built with ❤️ • Dados do GitHub • Deploy via GitHub Pages
+    Portfólio • Dados do GitHub • Deploy via GitHub Pages
   </footer>
 
   <!-- SCRIPTS: Fetch repos from GitHub and render -->
@@ -114,14 +180,14 @@
         document.getElementById('viewAll').addEventListener('click', ()=> window.open(`https://github.com/${username}`, '_blank'));
       }catch(e){
         console.error(e);
-        document.getElementById('projects').innerHTML = '<div style="grid-column:1/-1;padding:18px;border-radius:10px;background:#fff;color:#555">Não foi possível carregar seus repositórios. Pode ser limite da API. Você pode adicionar um token pessoal no código para aumentar o limite.</div>';
+        document.getElementById('projects').innerHTML = '<div style="grid-column:1/-1;padding:18px;border-radius:10px;background:var(--panel);color:var(--muted)">Não foi possível carregar seus repositórios. Pode ser limite da API. Você pode adicionar um token pessoal no código para aumentar o limite.</div>';
       }
     }
 
     function renderRepos(repos){
       const container = document.getElementById('projects');
       container.innerHTML = '';
-      if(!repos || repos.length === 0){ container.innerHTML = '<div style="grid-column:1/-1;padding:18px;border-radius:10px;background:#fff;color:#555">Nenhum repositório encontrado.</div>'; return }
+      if(!repos || repos.length === 0){ container.innerHTML = '<div style="grid-column:1/-1;padding:18px;border-radius:10px;background:var(--panel);color:var(--muted)">Nenhum repositório encontrado.</div>'; return }
 
       repos.forEach(r => {
         const el = document.createElement('article'); el.className='proj';
@@ -138,4 +204,3 @@
   </script>
 </body>
 </html>
-
