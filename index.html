@@ -85,7 +85,15 @@
     }
     .proj-info { padding: 20px; }
     .proj-info h3 { margin: 0 0 10px; font-size: 1.2rem; color: #fff; }
-    .proj-info p { font-size: 0.9rem; color: var(--muted); height: 45px; overflow: hidden; }
+    .proj-info p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      height: 60px; /* Aumentei de 45px para 60px para caber 3 linhas */
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+}
     
     .tags { display: flex; gap: 8px; margin-top: 15px; }
     .tag { font-size: 0.7rem; background: rgba(125, 211, 252, 0.1); color: var(--accent-2); padding: 4px 10px; border-radius: 4px; font-weight: bold; }
@@ -184,12 +192,24 @@
     async function getRepos() {
   const container = document.getElementById('projects-container');
   
-  // Mapeamento: Nome do Repositório -> Caminho da sua Imagem Real
-  const printsReais = {
-    'Game': 'game.png',
-    'salao': 'salao.png',
-    'Banco': 'banco.png',
-    'esteticista': 'esteticista.png'
+  // 1. MAPEAMENTO DE IMAGENS E DESCRIÇÕES PERSONALIZADAS
+  const projetoInfo = {
+    'Game': {
+      imagem: 'game.png',
+      descricao: 'Desenvolvimento de um jogo interativo utilizando lógica de programação avançada com Python.'
+    },
+    'salao': {
+      imagem: 'salao.png',
+      descricao: 'Landing page elegante para salão de beleza, com foco em conversão e design responsivo.'
+    },
+    'Banco': {
+      imagem: 'banco.png',
+      descricao: 'Simulador de sistema bancário focado em algoritmos de segurança e manipulação de dados.'
+    },
+    'esteticista': {
+      imagem: 'esteticista.png',
+      descricao: 'Interface moderna e clean desenvolvida para profissionais de estética, otimizada para SEO.'
+    }
   };
 
   try {
@@ -198,19 +218,24 @@
     
     container.innerHTML = '';
     
-    const filtered = repos.filter(repo => projetosSelecionados.includes(repo.name));
-    filtered.sort((a, b) => projetosSelecionados.indexOf(a.name) - projetosSelecionados.indexOf(b.name));
+    // Atualize a lista de selecionados se quiser incluir 'esteticista'
+    const selecionados = ['Game', 'salao', 'salao-django', 'Banco', 'esteticista'];
+    
+    const filtered = repos.filter(repo => selecionados.includes(repo.name));
+    filtered.sort((a, b) => selecionados.indexOf(a.name) - selecionados.indexOf(b.name));
 
     filtered.forEach(repo => {
-      // Se existir um print real mapeado, usa ele. Se não, usa o automático do GitHub.
-      const imgUrl = printsReais[repo.name] ? printsReais[repo.name] : `https://opengraph.githubassets.com/1/${username}/${repo.name}`;
+      // Busca a info no objeto, ou usa o padrão caso não encontre
+      const info = projetoInfo[repo.name] || {};
+      const imgUrl = info.imagem || `https://opengraph.githubassets.com/1/${username}/${repo.name}`;
+      const descFinal = info.descricao || repo.description || 'Projeto incrível desenvolvido com as melhores práticas.';
       
       const card = `
         <article class="proj-card">
           <div class="proj-img" style="background-image: url('${imgUrl}')"></div>
           <div class="proj-info">
             <h3>${repo.name}</h3>
-            <p>${repo.description || 'Projeto incrível desenvolvido com as melhores práticas.'}</p>
+            <p>${descFinal}</p>
             <div class="tags">
               <span class="tag">${repo.language || 'Code'}</span>
               <span class="tag">⭐ ${repo.stargazers_count}</span>
@@ -230,5 +255,3 @@
   </script>
 </body>
 </html>
-
-
