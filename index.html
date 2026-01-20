@@ -194,27 +194,28 @@
   
   // 1. MAPEAMENTO DE IMAGENS E DESCRIÇÕES PERSONALIZADAS
   const projetoInfo = {
-    'Game': {
-      imagem: 'game.png',
+      'Game': {
+      imagem: 'img/game.png',
       descricao: 'Desenvolvimento de um jogo interativo utilizando lógica de programação avançada com Python.'
     },
     'salao': {
-      imagem: 'salao.png',
+      imagem: 'img/salao.png',
       descricao: 'Landing page elegante para salão de beleza, com foco em conversão e design responsivo.'
     },
     'Banco': {
-      imagem: 'banco.png',
+      imagem: 'img/banco.png',
       descricao: 'Simulador de sistema bancário focado em algoritmos de segurança e manipulação de dados.'
     },
     'esteticista': {
-      imagem: 'esteticista.png',
+      imagem: 'img/esteticista.png',
       descricao: 'Interface moderna e clean desenvolvida para profissionais de estética, otimizada para SEO.'
-    }
+    },
     'dashboard': {
-      imagem: 'dashboard.png',
-      descricao: 'Dashoboard completo funcional para empresas de pequeno e grande porte.'
-    }
-  };
+      imagem: 'dashboard.png'
+       }
+  }
+    
+ 
     
   try {
     const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
