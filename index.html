@@ -185,7 +185,7 @@
   <script>
     const username = 'Jonathas17';
     // Nomes exatos dos repositórios que você quer exibir
-    const projetosSelecionados = ['Game', 'salao', 'Banco', 'esteticista'];
+    const projetosSelecionados = ['Game', 'salao', 'Banco', 'esteticista', 'dashboard'];
 
     document.getElementById('year').innerText = new Date().getFullYear();
 
@@ -210,6 +210,11 @@
       imagem: 'esteticista.png',
       descricao: 'Interface moderna e clean desenvolvida para profissionais de estética, otimizada para SEO.'
     }
+    'dashboard'? {
+      imagem: 'dashboard.png',
+    descricao:'Dashoboard completo funcional para empresas de pequeno e grande porte.'
+  }
+  
   };
 
   try {
@@ -219,7 +224,7 @@
     container.innerHTML = '';
     
     // Atualize a lista de selecionados se quiser incluir 'esteticista'
-    const selecionados = ['Game', 'salao', 'salao-django', 'Banco', 'esteticista'];
+    const selecionados = ['Game', 'salao', 'salao-django', 'Banco', 'esteticista', 'dashboard'];
     
     const filtered = repos.filter(repo => selecionados.includes(repo.name));
     filtered.sort((a, b) => selecionados.indexOf(a.name) - selecionados.indexOf(b.name));
@@ -255,3 +260,4 @@
   </script>
 </body>
 </html>
+
