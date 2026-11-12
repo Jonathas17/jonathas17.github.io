@@ -3,264 +3,407 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jonathas | Portfólio Full Stack</title>
-  
+  <title>Jonathas Marinho | Desenvolvedor Full Stack C# .NET · Angular · React · Flutter</title>
+  <meta name="description" content="Portfólio de Jonathas Marinho, Desenvolvedor Full Stack: C#, .NET, ASP.NET Core, Angular, React, TypeScript, Flutter, Python, PostgreSQL, Docker e AWS.">
+  <meta property="og:title" content="Jonathas Marinho | Desenvolvedor Full Stack">
+  <meta property="og:description" content="C# · ASP.NET Core · Angular · React · Flutter · PostgreSQL. Projetos de delivery, e-commerce e PDV.">
+  <meta property="og:image" content="https://github.com/Jonathas17.png">
   <link rel="icon" href="https://github.com/Jonathas17.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
   <style>
     :root {
       --bg: #050507;
-      --panel: #0d0d0f;
+      --panel: #0d0d10;
+      --panel-2: #121216;
+      --text: #e6eef8;
       --muted: #9aa0a6;
       --accent: #ffd166;
       --accent-2: #7dd3fc;
-      --glass: rgba(255, 255, 255, 0.03);
       --border: rgba(255, 255, 255, 0.08);
       --radius: 16px;
-      font-family: 'Inter', sans-serif;
       color-scheme: dark;
     }
-
-    * { box-sizing: border-box; transition: all 0.3s ease; }
-    body { margin: 0; background-color: var(--bg); color: #e6eef8; line-height: 1.6; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
     a { color: var(--accent-2); text-decoration: none; }
-
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 10; background: rgba(5,5,7,.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+    nav .logo { font-weight: 800; color: var(--text); }
+    nav .logo span { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 24px; margin: 0; padding: 0; }
+    nav ul a { color: var(--muted); font-size: .9rem; font-weight: 500; }
+    nav ul a:hover { color: var(--text); }
 
     /* HERO */
-    .hero {
-      padding: 100px 0 60px;
-      background: radial-gradient(circle at top right, rgba(125, 211, 252, 0.05), transparent),
-                  radial-gradient(circle at bottom left, rgba(255, 209, 102, 0.05), transparent);
-      text-align: center;
-    }
-    .hero-avatar {
-      width: 100px; height: 100px; border-radius: 50%;
-      border: 3px solid var(--accent); margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(255, 209, 102, 0.2);
-    }
-    .title { font-size: 3rem; margin: 0; font-weight: 800; letter-spacing: -1px; }
-    .subtitle { color: var(--muted); font-size: 1.2rem; max-width: 700px; margin: 15px auto; }
+    .hero { padding: 90px 0 70px; text-align: center;
+      background: radial-gradient(circle at 80% 0%, rgba(125,211,252,.08), transparent 45%),
+                  radial-gradient(circle at 10% 100%, rgba(255,209,102,.06), transparent 45%); }
+    .avatar { width: 112px; height: 112px; border-radius: 50%; border: 3px solid var(--accent); box-shadow: 0 0 30px rgba(255,209,102,.2); }
+    .badge { display: inline-block; margin-top: 18px; padding: 6px 14px; border-radius: 999px; font-size: .8rem; font-weight: 600;
+      background: rgba(74,222,128,.1); color: #4ade80; border: 1px solid rgba(74,222,128,.25); }
+    .badge::before { content: "●"; margin-right: 6px; }
+    h1 { font-size: 3rem; margin: 14px 0 4px; font-weight: 800; letter-spacing: -1px; }
+    .role { font-size: 1.25rem; color: var(--accent); font-weight: 600; margin: 0; }
+    .lead { color: var(--muted); font-size: 1.08rem; max-width: 720px; margin: 18px auto 30px; }
+    .lead strong { color: var(--text); font-weight: 600; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn { padding: 12px 22px; border-radius: 10px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); color: var(--text); background: var(--panel); transition: .2s; }
+    .btn:hover { border-color: var(--accent-2); transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+    .btn-primary:hover { background: #fff; border-color: #fff; }
+    .loc { margin-top: 22px; color: var(--muted); font-size: .9rem; }
 
-    /* SKILLS SECTION */
-    .skills-grid {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 20px; margin: 40px 0;
-    }
-    .skill-item {
-      background: var(--glass); border: 1px solid var(--border);
-      padding: 12px 20px; border-radius: 12px;
-      display: flex; align-items: center; gap: 10px; font-weight: 600;
-    }
-    .skill-item i { font-size: 1.5rem; }
+    section { padding: 70px 0; }
+    .section-title { font-size: 1.8rem; margin: 0 0 8px; font-weight: 800; }
+    .section-sub { color: var(--muted); margin: 0 0 32px; }
 
-    /* LAYOUT */
-    .main-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-bottom: 80px; }
+    /* SKILLS */
+    .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+    .skill-group { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+    .skill-group h3 { margin: 0 0 14px; font-size: .8rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 8px; background: var(--panel-2); border: 1px solid var(--border); font-size: .88rem; font-weight: 500; }
+    .chip i { font-size: 1.15rem; }
 
-    /* PROJECTS */
-    .section-title { font-size: 1.5rem; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-    
-    .proj-card {
-      background: var(--panel); border-radius: var(--radius); overflow: hidden;
-      border: 1px solid var(--border); position: relative;
-    }
-    .proj-card:hover { transform: translateY(-5px); border-color: var(--accent-2); }
-    
-      .proj-img {
-    width: 100%;
-    height: 180px; /* Aumentei um pouco a altura para destacar o print */
-    background-color: #1a1a1c;
-    background-size: cover;      /* Faz a imagem preencher o card sem sobrar espaço */
-    background-position: top;    /* Mostra o topo do seu sistema */
-    border-bottom: 1px solid var(--border);
-    filter: brightness(0.9);     /* Deixa um pouco mais escuro para combinar com o tema */
-  }
+    /* FEATURED */
+    .featured { display: grid; gap: 22px; }
+    .feat { display: grid; grid-template-columns: 1fr 1.4fr; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: .25s; }
+    .feat:hover { border-color: var(--accent-2); }
+    .feat-visual { padding: 28px; display: flex; flex-direction: column; justify-content: center; gap: 10px;
+      background: linear-gradient(135deg, rgba(125,211,252,.10), rgba(255,209,102,.06)); border-right: 1px solid var(--border); }
+    .feat-visual .emoji { font-size: 2.6rem; }
+    .feat-visual .kind { font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .feat-visual h3 { margin: 0; font-size: 1.5rem; }
+    .feat-visual .period { font-size: .85rem; color: var(--muted); }
+    .feat-body { padding: 28px; }
+    .feat-body ul { margin: 0 0 18px; padding-left: 18px; color: #c8d0da; }
+    .feat-body li { margin-bottom: 6px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: .72rem; background: rgba(125,211,252,.1); color: var(--accent-2); padding: 4px 9px; border-radius: 5px; font-weight: 700; }
+    .feat-links { margin-top: 18px; font-size: .85rem; font-weight: 700; display: flex; gap: 18px; }
+    .soon { color: var(--muted); font-weight: 600; }
 
-  .proj-card:hover .proj-img {
-    filter: brightness(1.1);     /* "Acende" a imagem quando você passa o mouse */
-}
-    }
-    .proj-info { padding: 20px; }
-    .proj-info h3 { margin: 0 0 10px; font-size: 1.2rem; color: #fff; }
-    .proj-info p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      height: 60px; /* Aumentei de 45px para 60px para caber 3 linhas */
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-}
-    
-    .tags { display: flex; gap: 8px; margin-top: 15px; }
-    .tag { font-size: 0.7rem; background: rgba(125, 211, 252, 0.1); color: var(--accent-2); padding: 4px 10px; border-radius: 4px; font-weight: bold; }
+    /* OTHER PROJECTS */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: .25s; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent-2); }
+    .card-img { height: 170px; background: #1a1a1c center top / cover no-repeat; border-bottom: 1px solid var(--border); filter: brightness(.9); }
+    .card:hover .card-img { filter: brightness(1.05); }
+    .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .card-body h3 { margin: 0 0 8px; font-size: 1.1rem; }
+    .card-body p { margin: 0 0 14px; color: var(--muted); font-size: .9rem; flex: 1; }
+    .card-body a.code { margin-top: 14px; font-weight: 700; font-size: .8rem; }
 
     /* TIMELINE */
-    .timeline { display: flex; flex-direction: column; gap: 20px; }
-    .tl-item {
-      padding: 15px; border-left: 2px solid var(--accent);
-      background: var(--glass); border-radius: 0 12px 12px 0;
-    }
-    .tl-item h4 { margin: 0; color: var(--accent); }
-    .tl-item span { font-size: 0.8rem; color: var(--muted); }
+    .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+    .timeline { display: flex; flex-direction: column; gap: 16px; }
+    .tl { padding: 16px 18px; border-left: 2px solid var(--accent); background: var(--panel); border-radius: 0 12px 12px 0; }
+    .tl h4 { margin: 0; color: var(--text); }
+    .tl .meta { font-size: .82rem; color: var(--accent); font-weight: 600; }
+    .tl p { margin: 6px 0 0; color: var(--muted); font-size: .9rem; }
 
-    /* BUTTONS */
-    .btn {
-      padding: 12px 24px; border-radius: 10px; font-weight: 700; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 8px; border: none;
-    }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-primary:hover { background: #fff; transform: scale(1.05); }
+    /* CONTACT */
+    .contact { text-align: center; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 50px 24px; }
+    .contact p { color: var(--muted); max-width: 560px; margin: 0 auto 26px; }
 
-    footer { padding: 50px 0; text-align: center; border-top: 1px solid var(--border); color: var(--muted); }
+    footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
 
     @media (max-width: 850px) {
-      .main-layout { grid-template-columns: 1fr; }
-      .title { font-size: 2rem; }
+      nav ul { display: none; }
+      h1 { font-size: 2.2rem; }
+      .feat, .two-col { grid-template-columns: 1fr; }
+      .feat-visual { border-right: 0; border-bottom: 1px solid var(--border); }
     }
   </style>
 </head>
 <body>
 
-  <header class="hero wrap">
-    <img src="https://github.com/Jonathas17.png" class="hero-avatar" alt="Avatar">
-    <h1 class="title">Jonathas Marinho</h1>
-    <p class="subtitle">Desenvolvedor Full Stack, trabalho com JavaScript, Python, React e Node.js, GitHub, HTML e CSS, Banco de Dados MySQL.</p>
-    
-    <div class="skills-grid">
-      <div class="skill-item"><i class="devicon-html5-plain colored"></i> HTML5</div>
-      <div class="skill-item"><i class="devicon-css3-plain colored"></i> CSS3</div>
-      <div class="skill-item"><i class="devicon-javascript-plain colored"></i> JavaScript</div>
-      <div class="skill-item"><i class="devicon-python-plain colored"></i> Python</div>
-      <div class="skill-item"><i class="devicon-react-original colored"></i> React</div>
-      <div class="skill-item"><i class="devicon-nodejs-plain colored"></i> Node.js</div>
+  <nav>
+    <div class="wrap">
+      <a href="#" class="logo mono">&lt;Jonathas<span>/</span>&gt;</a>
+      <ul>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <a href="https://github.com/Jonathas17" target="_blank" class="btn btn-primary">
-      <i class="devicon-github-original"></i> Ver GitHub Completo
-    </a>
+  <header class="hero">
+    <div class="wrap">
+      <img src="https://github.com/Jonathas17.png" class="avatar" alt="Foto de Jonathas Marinho">
+      <div><span class="badge">Disponível para trabalho remoto, híbrido ou presencial</span></div>
+      <h1>Jonathas Marinho</h1>
+      <p class="role">Desenvolvedor Full Stack · C# / .NET · Angular · React · Flutter</p>
+      <p class="lead">
+        Desenvolvo aplicações de ponta a ponta: <strong>APIs REST em ASP.NET Core</strong> com Clean Architecture, CQRS e
+        Entity Framework Core, interfaces em <strong>Angular e React</strong>, apps mobile em <strong>Flutter</strong> e bancos
+        <strong>PostgreSQL, MySQL e SQLite</strong>. Graduado em Sistemas de Informação.
+      </p>
+      <div class="actions">
+        <a href="https://github.com/Jonathas17" target="_blank" rel="noopener" class="btn btn-primary"><i class="devicon-github-original"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/jonathasmarinho" target="_blank" rel="noopener" class="btn"><i class="devicon-linkedin-plain"></i> LinkedIn</a>
+        <a href="mailto:jonathasdev@outlook.com" class="btn">✉️ jonathasdev@outlook.com</a>
+      </div>
+      <p class="loc">📍 Porto Franco, Maranhão · Brasil</p>
+    </div>
   </header>
 
   <main class="wrap">
-    <div class="main-layout">
-      
-      <section>
-        <h2 class="section-title">🚀 Projetos Recentes</h2>
-        <div id="projects-container" class="projects-grid">
-          <p>Carregando repositórios...</p>
-        </div>
-      </section>
 
-      <aside>
-        <h2 class="section-title">📂 Trajetória</h2>
-        <div class="timeline">
-          <div class="tl-item">
-            <h4>Full Stack Developer</h4>
-            <span>2023 - Presente</span>
-            <p>Desenvolvimento de APIs e interfaces responsivas.</p>
-          </div>
-          <div class="tl-item">
-            <h4>UX/UI Design</h4>
-            <span>Freelance</span>
-            <p>Foco em prototipagem e experiência do usuário.</p>
-          </div>
-          <div class="tl-item">
-            <h4>Graphic Designer</h4>
-            <span>Formação</span>
-            <p>Criação de identidades visuais e artes digitais.</p>
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Stack técnica</h2>
+      <p class="section-sub">As tecnologias que uso no dia a dia, organizadas por área.</p>
+      <div class="skills">
+        <div class="skill-group">
+          <h3>Linguagens</h3>
+          <div class="chips">
+            <span class="chip"><i class="devicon-csharp-plain colored"></i> C#</span>
+            <span class="chip"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+            <span class="chip"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+            <span class="chip"><i class="devicon-python-plain colored"></i> Python</span>
+            <span class="chip"><i class="devicon-dart-plain colored"></i> Dart</span>
+            <span class="chip"><i class="devicon-azuresqldatabase-plain colored"></i> SQL</span>
           </div>
         </div>
-      </aside>
+        <div class="skill-group">
+          <h3>Back-end</h3>
+          <div class="chips">
+            <span class="chip"><i class="devicon-dotnetcore-plain colored"></i> ASP.NET Core</span>
+            <span class="chip"><i class="devicon-dot-net-plain colored"></i> .NET</span>
+            <span class="chip">Entity Framework Core</span>
+            <span class="chip">MediatR</span>
+            <span class="chip"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+            <span class="chip"><i class="devicon-django-plain"></i> Django</span>
+            <span class="chip">APIs RESTful</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Front-end</h3>
+          <div class="chips">
+            <span class="chip"><i class="devicon-angular-plain colored"></i> Angular</span>
+            <span class="chip"><i class="devicon-react-original colored"></i> React</span>
+            <span class="chip"><i class="devicon-html5-plain colored"></i> HTML5</span>
+            <span class="chip"><i class="devicon-css3-plain colored"></i> CSS3</span>
+            <span class="chip">Design responsivo</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Mobile e Desktop</h3>
+          <div class="chips">
+            <span class="chip"><i class="devicon-flutter-plain colored"></i> Flutter</span>
+            <span class="chip"><i class="devicon-qt-original colored"></i> PySide6 (Qt)</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Arquitetura e Segurança</h3>
+          <div class="chips">
+            <span class="chip">Clean Architecture</span>
+            <span class="chip">CQRS</span>
+            <span class="chip">Monólito modular</span>
+            <span class="chip">Microsserviços</span>
+            <span class="chip">JWT + Refresh Token</span>
+            <span class="chip">ASP.NET Core Identity</span>
+            <span class="chip">BCrypt</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Banco de dados e DevOps</h3>
+          <div class="chips">
+            <span class="chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+            <span class="chip"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+            <span class="chip"><i class="devicon-sqlite-plain colored"></i> SQLite</span>
+            <span class="chip"><i class="devicon-docker-plain colored"></i> Docker / Compose</span>
+            <span class="chip"><i class="devicon-amazonwebservices-plain-wordmark colored"></i> AWS</span>
+            <span class="chip"><i class="devicon-git-plain colored"></i> Git</span>
+            <span class="chip">Testes automatizados</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </div>
+    <!-- FEATURED PROJECTS -->
+    <section id="projetos">
+      <h2 class="section-title">Projetos em destaque</h2>
+      <p class="section-sub">Sistemas completos, do banco de dados à interface.</p>
+
+      <div class="featured">
+        <article class="feat">
+          <div class="feat-visual">
+            <span class="emoji">🛵</span>
+            <span class="kind">Mobile + API</span>
+            <h3>Aplicativo de Delivery</h3>
+            <span class="period">08/2026 – 11/2026 · Autônomo</span>
+          </div>
+          <div class="feat-body">
+            <ul>
+              <li>Três painéis no mesmo app: cliente, restaurante e entregador.</li>
+              <li>Fluxo completo do pedido: carrinho, checkout, aceite, preparo, retirada e entrega com código de confirmação.</li>
+              <li>API REST com regras de status e preços validadas no servidor, login com JWT e senhas com BCrypt.</li>
+              <li>Testes automatizados no app.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Provider</span>
+              <span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">EF Core</span>
+              <span class="tag">SQLite</span><span class="tag">JWT</span>
+            </div>
+            <div class="feat-links"><span class="soon">Repositório em breve</span></div>
+          </div>
+        </article>
+
+        <article class="feat">
+          <div class="feat-visual">
+            <span class="emoji">🛒</span>
+            <span class="kind">Web Full Stack</span>
+            <h3>E-commerce</h3>
+            <span class="period">05/2026 – 07/2026 · Autônomo</span>
+          </div>
+          <div class="feat-body">
+            <ul>
+              <li>Back-end em monólito modular com Clean Architecture, CQRS e MediatR.</li>
+              <li>Catálogo, carrinho, pedidos e controle de estoque por variação de produto.</li>
+              <li>Painel administrativo em Angular para gerenciar produtos e pedidos.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">ASP.NET Core</span>
+              <span class="tag">CQRS</span><span class="tag">MediatR</span><span class="tag">PostgreSQL</span>
+            </div>
+            <div class="feat-links"><span class="soon">Repositório em breve</span></div>
+          </div>
+        </article>
+
+        <article class="feat">
+          <div class="feat-visual">
+            <span class="emoji">🧾</span>
+            <span class="kind">Desktop + Web</span>
+            <h3>Sistema PDV</h3>
+            <span class="period">Autônomo</span>
+          </div>
+          <div class="feat-body">
+            <ul>
+              <li>Ponto de venda com registro de vendas, controle de caixa e estoque.</li>
+              <li>Desenvolvido com Python, Django e interface desktop em PySide6 (Qt).</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Django</span><span class="tag">PySide6</span>
+            </div>
+            <div class="feat-links"><span class="soon">Repositório em breve</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- OTHER PROJECTS -->
+    <section id="outros" style="padding-top:0">
+      <h2 class="section-title">Outros projetos</h2>
+      <p class="section-sub">Estudos e projetos menores, todos com código aberto no GitHub.</p>
+      <div class="grid" id="others"></div>
+    </section>
+
+    <!-- EXPERIENCE + EDUCATION -->
+    <section id="experiencia">
+      <div class="two-col">
+        <div>
+          <h2 class="section-title">Experiência</h2>
+          <p class="section-sub">Projetos entregues como desenvolvedor autônomo.</p>
+          <div class="timeline">
+            <div class="tl">
+              <h4>Desenvolvedor Full Stack · Aplicativo de Delivery</h4>
+              <span class="meta">08/2026 – 11/2026 · Autônomo</span>
+              <p>App Flutter com API ASP.NET Core, EF Core, SQLite e autenticação JWT.</p>
+            </div>
+            <div class="tl">
+              <h4>Desenvolvedor Full Stack · E-commerce</h4>
+              <span class="meta">05/2026 – 07/2026 · Autônomo</span>
+              <p>Angular + ASP.NET Core + PostgreSQL, com Clean Architecture e CQRS.</p>
+            </div>
+            <div class="tl">
+              <h4>Desenvolvedor · Sistema PDV</h4>
+              <span class="meta">Autônomo</span>
+              <p>Python, Django e PySide6 para vendas, caixa e estoque.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2 class="section-title">Formação</h2>
+          <p class="section-sub">Graduação e certificações.</p>
+          <div class="timeline">
+            <div class="tl">
+              <h4>Sistemas de Informação</h4>
+              <span class="meta">Graduação · Concluída em 12/2024</span>
+            </div>
+            <div class="tl">
+              <h4>Certificações</h4>
+              <p>C# (2026) · JavaScript, HTML e CSS Developer (2023) · Python e Django (2023) · Banco de Dados PostgreSQL (2023)</p>
+            </div>
+            <div class="tl">
+              <h4>Idiomas</h4>
+              <p>Português (nativo) · Espanhol (intermediário) · Inglês (básico)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contato">
+      <div class="contact">
+        <h2 class="section-title">Vamos conversar?</h2>
+        <p>Estou disponível para vagas de Desenvolvedor Full Stack, .NET ou Back-end, em formato remoto, híbrido ou presencial.</p>
+        <div class="actions">
+          <a href="mailto:jonathasdev@outlook.com" class="btn btn-primary">✉️ Enviar e-mail</a>
+          <a href="https://www.linkedin.com/in/jonathasmarinho" target="_blank" rel="noopener" class="btn"><i class="devicon-linkedin-plain"></i> LinkedIn</a>
+          <a href="https://github.com/Jonathas17" target="_blank" rel="noopener" class="btn"><i class="devicon-github-original"></i> GitHub</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>© <span id="year"></span> • Jonathas Marinho • Construído com dedicação.</p>
+    © <span id="year"></span> · Jonathas Marinho · Desenvolvedor Full Stack
   </footer>
 
   <script>
-    const username = 'Jonathas17';
-    // Nomes exatos dos repositórios que você quer exibir
-    const projetosSelecionados = ['Game', 'salao', 'Banco', 'esteticista', 'dashboard'];
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    document.getElementById('year').innerText = new Date().getFullYear();
+    // Projetos fixos (não dependem da API do GitHub, que tem limite de requisições)
+    const outros = [
+      { repo: 'workshop-asp-net-core-mvc', titulo: 'Workshop ASP.NET Core MVC', img: null,
+        desc: 'Aplicação web em C# com ASP.NET Core MVC, desenvolvida em workshop.', tags: ['C#', 'ASP.NET Core', 'MVC'] },
+      { repo: 'dashboard', titulo: 'Dashboard', img: 'dashboard.png',
+        desc: 'Dashboard com tela de login e gráficos dinâmicos.', tags: ['Dashboard', 'Gráficos'] },
+      { repo: 'salao', titulo: 'Salão de Beleza', img: 'salao.png',
+        desc: 'Site para salão de beleza com agendamento, portfólio e design responsivo.', tags: ['Web', 'Responsivo'] },
+      { repo: 'esteticista', titulo: 'Esteticista', img: 'esteticista.png',
+        desc: 'Interface moderna para profissionais de estética, otimizada para SEO.', tags: ['HTML', 'CSS', 'SEO'] },
+      { repo: 'Banco', titulo: 'Sistema Bancário', img: 'banco.png',
+        desc: 'Simulador de sistema bancário com operações e manipulação de dados.', tags: ['Lógica', 'Dados'] },
+      { repo: 'Game', titulo: 'Game', img: 'game.png',
+        desc: 'Jogo interativo desenvolvido com lógica de programação.', tags: ['Python'] },
+    ];
 
-    async function getRepos() {
-  const container = document.getElementById('projects-container');
-  
-  // 1. MAPEAMENTO DE IMAGENS E DESCRIÇÕES PERSONALIZADAS
-  const projetoInfo = {
-      'Game': {
-      imagem: 'game.png',
-      descricao: 'Desenvolvimento de um jogo interativo utilizando lógica de programação avançada com Python.'
-    },
-    'salao': {
-      imagem: 'salao.png',
-      descricao: 'Landing page elegante para salão de beleza, com foco em conversão e design responsivo.'
-    },
-    'Banco': {
-      imagem: 'banco.png',
-      descricao: 'Simulador de sistema bancário focado em algoritmos de segurança e manipulação de dados.'
-    },
-    'esteticista': {
-      imagem: 'esteticista.png',
-      descricao: 'Interface moderna e clean desenvolvida para profissionais de estética, otimizada para SEO.'
-    },
-    'dashboard': {
-      imagem: 'dashboard.png',
-      descricao: 'Dashboard Com tela de login e graficos dinamicos. '
-       },
-  }
-    
- 
-    
-  try {
-    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
-    const repos = await response.json();
-    
-    container.innerHTML = '';
-    
-    // Atualize a lista de selecionados se quiser incluir 'esteticista'
-    const selecionados = ['Game', 'salao', 'salao-django', 'Banco', 'esteticista', 'dashboard'];
-    
-    const filtered = repos.filter(repo => selecionados.includes(repo.name));
-    filtered.sort((a, b) => selecionados.indexOf(a.name) - selecionados.indexOf(b.name));
-
-    filtered.forEach(repo => {
-      // Busca a info no objeto, ou usa o padrão caso não encontre
-      const info = projetoInfo[repo.name] || {};
-      const imgUrl = info.imagem || `https://opengraph.githubassets.com/1/${username}/${repo.name}`;
-      const descFinal = info.descricao || repo.description || 'Projeto incrível desenvolvido com as melhores práticas.';
-      
-      const card = `
-        <article class="proj-card">
-          <div class="proj-img" style="background-image: url('${imgUrl}')"></div>
-          <div class="proj-info">
-            <h3>${repo.name}</h3>
-            <p>${descFinal}</p>
-            <div class="tags">
-              <span class="tag">${repo.language || 'Code'}</span>
-              <span class="tag">⭐ ${repo.stargazers_count}</span>
-            </div>
-            <a href="${repo.html_url}" target="_blank" style="display:block; margin-top:15px; font-weight:bold; font-size:0.8rem">VER CÓDIGO →</a>
+    document.getElementById('others').innerHTML = outros.map(p => {
+      const img = p.img || `https://opengraph.githubassets.com/1/Jonathas17/${p.repo}`;
+      return `
+        <article class="card">
+          <div class="card-img" style="background-image:url('${img}')"></div>
+          <div class="card-body">
+            <h3>${p.titulo}</h3>
+            <p>${p.desc}</p>
+            <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+            <a class="code" href="https://github.com/Jonathas17/${p.repo}" target="_blank" rel="noopener">VER CÓDIGO →</a>
           </div>
-        </article>
-      `;
-      container.innerHTML += card;
-    });
-  } catch (error) {
-    container.innerHTML = '<p>Erro ao carregar projetos.</p>';
-  }
-}
-
-    getRepos();
+        </article>`;
+    }).join('');
   </script>
 </body>
 </html>
-
-
-
